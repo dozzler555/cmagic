@@ -6,7 +6,7 @@ workflows:
     scripts:
      - brew install docker-machine docker
      - brew services start docker-machine
-     - docker-machine create --driver virtualbox default
+     - docker-machine start default; docker-machine regenerate-certs default; eval "$(docker-machine env default)"
      - docker ps
      - docker pull dazz111/ubuntu-sdk:build
      - docker run -it --name sdk dazz111/ubuntu-sdk /bin/bash -c "curl -o sem.sh https://raw.githubusercontent.com/dozzler555/sem/main/sem.sh; git config --global color.ui false; chmod a+x sem.sh; bash sem.sh"'
