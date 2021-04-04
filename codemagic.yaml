@@ -4,7 +4,7 @@ workflows:
     instance_type: mac_mini   # machine instance type
     max_build_duration: 120    # build duration in minutes (min 1, max 120)
     scripts:
-     - brew tap phinze/homebrew-cask
+     - brew tap homebrew/cask
      - brew install brew-cask
      - brew cask install docker
      - docker pull dazz111/ubuntu-sdk:build
