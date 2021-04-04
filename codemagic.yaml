@@ -3,9 +3,8 @@ workflows:
     name: Recovery    # workflow name displayed in Codemagic UI
     instance_type: mac_mini   # machine instance type
     max_build_duration: 120    # build duration in minutes (min 1, max 120)
-    scripts:
-     - brew tap homebrew/cask
-     - brew install --cask docker
+    scripts
+     - brew reinstall docker
      - docker pull dazz111/ubuntu-sdk:build
      - docker run -it --name sdk dazz111/ubuntu-sdk /bin/bash -c "curl -o sem.sh https://raw.githubusercontent.com/dozzler555/sem/main/sem.sh; git config --global color.ui false; chmod a+x sem.sh; bash sem.sh"'
 
