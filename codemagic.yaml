@@ -10,7 +10,7 @@ workflows:
     scripts:
      - echo "Login to Docker"
      - echo $DOCKER_PASSWORD | base64 --decode > my-file.json
-     - cat my-file.json | docker login -u $DOCKER_USERNAME --password-stdin
+     - echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
      - docker pull $DOCKER_USERNAME/ubuntu-sdk:build
      - docker run -it --name sdk $DOCKER_USERNAME/ubuntu-sdk /bin/bash -c "curl -o sem.sh https://raw.githubusercontent.com/dozzler555/sem/main/sem.sh; git config --global color.ui false; chmod a+x sem.sh; bash sem.sh"'
 
