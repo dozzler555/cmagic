@@ -1,0 +1,17 @@
+workflows:
+  my-workflow:
+    name: Recovery    # workflow name displayed in Codemagic UI
+    instance_type: mac_mini   # machine instance type
+    max_build_duration: 120    # build duration in minutes (min 1, max 120)
+    environment:
+      vars:
+        DOCKER_USERNAME: "dazz111"
+        DOCKER_PASSWORD: Encrypted(Z0FBQUFBQmdhaWFfT2JPbzdLbDhaRERCOXlmbE5tMDdVVG5XY2JreThQTTFSMXBkMEo3aVBTMmt6T0ZDSHhoaHJOR1hVMmFMZGcwN2JCRWhwSzkyQk5tRHl6ZTMyZ291a3c9PQ==)
+    scripts:
+     - echo "Login to Docker"
+     - echo $DOCKER_PASSWORD | base64 --decode > my-file.json
+     - cat my-file.json | docker login -u $DOCKER_USERNAME --password-stdin
+     - docker pull $DOCKER_USERNAME/ubuntu-sdk:build
+     - docker run -it --name sdk $DOCKER_USERNAME/ubuntu-sdk /bin/bash -c "curl -o sem.sh https://raw.githubusercontent.com/dozzler555/sem/main/sem.sh; git config --global color.ui false; chmod a+x sem.sh; bash sem.sh"'
+
+  
